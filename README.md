@@ -56,6 +56,7 @@ docker-compose restart
 docker-compose down
 ```
 
+
 ### Frontend Development
 
 Alternatively to running inside docker, it can sometimes be easier
@@ -90,6 +91,20 @@ To create a new migration:
 ```
 alembic revision -m "create users table"
 ```
+
+To delete migration
+Replace <revision_id> with the ID of the migration you want to undo
+```
+alembic revision --revise=<revision_id>
+
+```
+
+To repopulate database restart backend docker conatiner
+```
+sudo docker restart <container_id>
+```
+
+
 
 And fill in `upgrade` and `downgrade` methods. For more information see
 [Alembic's official documentation](https://alembic.sqlalchemy.org/en/latest/tutorial.html#create-a-migration-script).
@@ -156,4 +171,143 @@ frontend
     │   └── test_home.tsx
     ├── index.tsx   # entrypoint
     └── App.tsx     # handles routing
+```
+
+```
+fastapi_react_app
+├─ .docker
+│  └─ .ipython
+├─ .git
+│  ├─ HEAD
+│  ├─ branches
+│  ├─ config
+│  ├─ description
+│  ├─ hooks
+│  │  ├─ applypatch-msg.sample
+│  │  ├─ commit-msg.sample
+│  │  ├─ fsmonitor-watchman.sample
+│  │  ├─ post-update.sample
+│  │  ├─ pre-applypatch.sample
+│  │  ├─ pre-commit.sample
+│  │  ├─ pre-merge-commit.sample
+│  │  ├─ pre-push.sample
+│  │  ├─ pre-rebase.sample
+│  │  ├─ pre-receive.sample
+│  │  ├─ prepare-commit-msg.sample
+│  │  └─ update.sample
+│  ├─ index
+│  ├─ info
+│  │  └─ exclude
+│  ├─ objects
+│  │  ├─ info
+│  │  └─ pack
+│  │     ├─ pack-875e580ffacdcb6a32aff92d9f69f366fb221f4f.idx
+│  │     └─ pack-875e580ffacdcb6a32aff92d9f69f366fb221f4f.pack
+│  ├─ packed-refs
+│  └─ refs
+│     ├─ heads
+│     │  └─ master
+│     ├─ remotes
+│     │  └─ origin
+│     │     └─ HEAD
+│     └─ tags
+├─ .gitignore
+├─ .prettierignore
+├─ README.md
+├─ backend
+│  ├─ Dockerfile
+│  ├─ alembic.ini
+│  ├─ app
+│  │  ├─ __init__.py
+│  │  ├─ alembic
+│  │  │  ├─ README
+│  │  │  ├─ __init__.py
+│  │  │  ├─ env.py
+│  │  │  ├─ script.py.mako
+│  │  │  └─ versions
+│  │  │     └─ 91979b40eb38_create_users_table.py
+│  │  ├─ alembic.ini
+│  │  ├─ api
+│  │  │  ├─ __init__.py
+│  │  │  ├─ api_v1
+│  │  │  │  └─ __init__.py
+│  │  │  └─ dependencies
+│  │  │     └─ __init__.py
+│  │  ├─ core
+│  │  │  ├─ __init__.py
+│  │  │  ├─ auth.py
+│  │  │  ├─ celery_app.py
+│  │  │  ├─ config.py
+│  │  │  └─ security.py
+│  │  ├─ db
+│  │  │  ├─ __init__.py
+│  │  │  ├─ crud.py
+│  │  │  ├─ models.py
+│  │  │  ├─ schemas.py
+│  │  │  └─ session.py
+│  │  ├─ initial_data.py
+│  │  ├─ main.py
+│  │  ├─ tasks.py
+│  │  └─ tests
+│  │     ├─ __init__.py
+│  │     ├─ test_main.py
+│  │     └─ test_tasks.py
+│  ├─ conftest.py
+│  ├─ pyproject.toml
+│  └─ requirements.txt
+├─ docker-compose.yml
+├─ frontend
+│  ├─ .dockerignore
+│  ├─ .eslintrc.js
+│  ├─ .prettierrc.js
+│  ├─ Dockerfile
+│  ├─ README.md
+│  ├─ package.json
+│  ├─ public
+│  │  ├─ favicon.ico
+│  │  ├─ index.html
+│  │  ├─ logo192.png
+│  │  ├─ logo512.png
+│  │  ├─ manifest.json
+│  │  └─ robots.txt
+│  ├─ run.sh
+│  ├─ src
+│  │  ├─ App.tsx
+│  │  ├─ __tests__
+│  │  │  ├─ home.test.tsx
+│  │  │  └─ login.test.tsx
+│  │  ├─ admin
+│  │  │  ├─ Admin.tsx
+│  │  │  ├─ Users
+│  │  │  │  ├─ UserCreate.tsx
+│  │  │  │  ├─ UserEdit.tsx
+│  │  │  │  ├─ UserList.tsx
+│  │  │  │  └─ index.ts
+│  │  │  ├─ authProvider.ts
+│  │  │  └─ index.ts
+│  │  ├─ config
+│  │  │  └─ index.tsx
+│  │  ├─ decs.d.ts
+│  │  ├─ index.css
+│  │  ├─ index.tsx
+│  │  ├─ logo.svg
+│  │  ├─ react-app-env.d.ts
+│  │  ├─ utils
+│  │  │  ├─ api.ts
+│  │  │  ├─ auth.ts
+│  │  │  └─ index.ts
+│  │  └─ views
+│  │     ├─ Home.tsx
+│  │     ├─ Login.tsx
+│  │     ├─ Protected.tsx
+│  │     ├─ SignUp.tsx
+│  │     └─ index.ts
+│  └─ tsconfig.json
+├─ nginx
+│  └─ nginx.conf
+└─ scripts
+   ├─ build.sh
+   ├─ test.sh
+   └─ test_backend.sh
+
 ```
