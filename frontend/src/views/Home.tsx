@@ -6,7 +6,7 @@ import { isAuthenticated } from '../utils/auth';
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    color: '#61dafb',
+    color: 'blue',
   },
 }));
 
