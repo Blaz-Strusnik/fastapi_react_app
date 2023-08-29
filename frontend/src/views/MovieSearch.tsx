@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import httpClient from '../utils/httpClient'
-
+import { TextField, Button, Typography, Paper } from '@mui/material';
 
 
 export function MovieSearch() {
@@ -23,47 +23,49 @@ export function MovieSearch() {
   };
   return  (
     <div>
-      <input
-        type="text"
-        placeholder="Enter movie title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <button onClick={handleFetchClick}>Fetch Movie Info</button>
-      
-      {error && <p>Error: {error}</p>}
-      
-      {movieInfo && (
-        <div>
-          <h2>Movie Information</h2>
-          <p>Title: {movieInfo.Title}</p>
-          <p>Director: {movieInfo.Director}</p>
-          <p>Year: {movieInfo.Year}</p>
-          <p>Rated: {movieInfo.Rated}</p>
-          <p>Released: {movieInfo.Released}</p>
-          <p>Runtime: {movieInfo.Runtime}</p>
-          <p>Genre: {movieInfo.Genre}</p>
-          <p>Director: {movieInfo.Director}</p>
-          <p>Writer: {movieInfo.Writer}</p>
-          <p>Actors: {movieInfo.Actors}</p>
-          <p>Plot: {movieInfo.Plot}</p>
-          <p>Language: {movieInfo.Language}</p>
-          <p>Country: {movieInfo.Country}</p>
-          <p>Awards: {movieInfo.Awards}</p>
-          <p>Poster: <img src={movieInfo.Poster} alt="Movie Poster" /></p>
-          <p>Metascore: {movieInfo.Metascore}</p>
-          <p>imdbRating: {movieInfo.imdbRating}</p>
-          <p>imdbVotes: {movieInfo.imdbVotes}</p>
-          <p>imdbID: {movieInfo.imdbID}</p>
-          <p>Type: {movieInfo.Type}</p>
-          <p>DVD: {movieInfo.DVD}</p>
-          <p>BoxOffice: {movieInfo.BoxOffice}</p>
-          <p>Production: {movieInfo.Production}</p>
-          <p>Website: {movieInfo.Website}</p>
-          {/* Add more fields as needed */}
-        </div>
-      )}
-    </div>
+    <TextField
+      label="Enter movie title"
+      value={title}
+      onChange={(e) => setTitle(e.target.value)}
+      fullWidth
+      variant="outlined"
+      margin="normal"
+    />
+    <Button onClick={handleFetchClick} variant="contained" color="primary">
+      Fetch Movie Info
+    </Button>
+
+    {error && <Typography color="error">Error: {error}</Typography>}
+
+    {movieInfo && (
+      <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+        <Typography variant="h6">Movie Information</Typography>
+        <Typography>Title: {movieInfo.Title}</Typography>
+        <Typography>Director: {movieInfo.Director}</Typography>
+        <Typography>Year: {movieInfo.Year}</Typography>
+        <Typography>Rated: {movieInfo.Rated}</Typography>
+        <Typography>Released: {movieInfo.Released}</Typography>
+        <Typography>Runtime: {movieInfo.Runtime}</Typography>
+        <Typography>Genre: {movieInfo.Genre}</Typography>
+        <Typography>Writer: {movieInfo.Writer}</Typography>
+        <Typography>Actors: {movieInfo.Actors}</Typography>
+        <Typography>Plot: {movieInfo.Plot}</Typography>
+        <Typography>Language: {movieInfo.Language}</Typography>
+        <Typography>Country: {movieInfo.Country}</Typography>
+        <Typography>Awards: {movieInfo.Awards}</Typography>
+        <Typography>Metascore: {movieInfo.Metascore}</Typography>
+        <Typography>imdbRating: {movieInfo.imdbRating}</Typography>
+        <Typography>imdbVotes: {movieInfo.imdbVotes}</Typography>
+        <Typography>imdbID: {movieInfo.imdbID}</Typography>
+        <Typography>Type: {movieInfo.Type}</Typography>
+        <Typography>DVD: {movieInfo.DVD}</Typography>
+        <Typography>BoxOffice: {movieInfo.BoxOffice}</Typography>
+        <Typography>Production: {movieInfo.Production}</Typography>
+        <Typography>Website: {movieInfo.Website}</Typography>
+        <img src={movieInfo.Poster} alt="Movie Poster" style={{ marginTop: '10px' }} />
+      </Paper>
+    )}
+  </div>
   );
 }
 
