@@ -31,6 +31,11 @@ export const Home: FC = () => {
           Click to make request to backend
         </a>
       )}
+            {!message && !error && (
+        <a className={classes.link} href="/movies">
+          Movies
+        </a>
+      )}
       {message && (
         <p>
           <code>{message}</code>
