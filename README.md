@@ -157,3 +157,4 @@ frontend
     ├── index.tsx   # entrypoint
     └── App.tsx     # handles routing
 ```
+#### This project was created with the help of Buuntu/fastapi-react
