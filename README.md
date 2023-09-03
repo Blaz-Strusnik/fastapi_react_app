@@ -157,4 +157,7 @@ frontend
     ├── index.tsx   # entrypoint
     └── App.tsx     # handles routing
 ```
-#### This project was created with the help of Buuntu/fastapi-react
+## Credits
+
+### Template Generator
+This project was generated using a template generator that simplifies the setup of a Fastapi and React JS project. The template generator is not part of this repository. You can find the template generator [here](https://github.com/Buuntu/fastapi-react).
