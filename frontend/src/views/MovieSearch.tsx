@@ -2,13 +2,38 @@ import React, { useState } from 'react';
 import httpClient from '../utils/httpClient'
 import { TextField, Button, Typography, Paper } from '@mui/material';
 
+interface MovieInfo {
+  Title: string;
+  Director: string;
+  Year: string;
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Metascore: string;
+  imdbRating: string;
+  imdbVotes: string;
+  imdbID: string;
+  Type: string;
+  DVD: string;
+  BoxOffice: string;
+  Production: string;
+  Website: string;
+  Poster: string;
+}
 
 export function MovieSearch() {
   const [title, setTitle] = useState('');
-  const [movieInfo, setMovieInfo] = useState(null);
-  const [error, setError] = useState(null);
+  const [movieInfo, setMovieInfo] = useState<MovieInfo>();
+  const [error, setError] = useState<string | null>(null);
 
-  const fetchMovieInfo = async (movieTitle) => {
+  const fetchMovieInfo = async (movieTitle: string) => {
     try {
       const response = await httpClient(`/api/movie/${movieTitle}`, {});
       setMovieInfo(response.json);
